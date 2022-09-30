@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve Your Ticket</title>
+
+  <!-- css link -->
+  <link rel="stylesheet" href="css/reserve.css">
+  <link rel="stylesheet" href="Css/style.css">
+  <!--BOOTSTRAP LINK-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css
+">
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="Css/bootstrap.min.css">
+
+
+
+
+
+</head>
+
+<body>
+
+  <!------------
+    navbar
+  -------------->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light Routes-color">
+      <div class="container ">
+        <a class="navbar-brand fw-bolder fs-3" href="index.html">Online Ticket Booking </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold navit">
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="reserve.html">Booking</a>
+            </li>
+
+
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="admin.html">Admin</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="my-booking.html">My Booking</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="Pricing.html">Pricing</a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="contactus.html">Contact</a>
+            </li>
+
+          </ul>
+          <form class="d-flex">
+            <div id="sign_in">
+              <div class="d-flex">
+                <button class="btn btn-outline-success " type="submit"><a class="nav-link active register"
+                    aria-current="page" href="regland.html">Register</a></button>
+
+                <!-- Login work  -->
+                <button class="btn btn-outline-success mx-2" type="submit"><a class="nav-link active  register"
+                    aria-current="page" href="login.html">Login</a></button>
+              </div>
+
+
+            </div>
+            <!-- Register work  -->
+            <div id="signOut">
+              <div class="d-flex ">
+                <p id="userName" class="user-name"></p>
+                <!-- Login work  -->
+                <button onclick="handleLogOut()" class="logout-btn" type="button"><a class="log-out"
+                    aria-current="page">Logout</a></button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <script>
+    const getUserInfo = () => {
+      const userInfo = localStorage.getItem("user");
+      const user = JSON.parse(userInfo);
+      console.log("user :", user);
+      if (user) {
+        document.getElementById("signOut").style.display = "block";
+        document.getElementById("sign_in").style.display = "none";
+        document.getElementById("userName").innerText = user.name;
+      } else {
+        document.getElementById("sign_in").style.display = "block";
+        document.getElementById("signOut").style.display = "none";
+      }
+    };
+    getUserInfo();
+
+    const handleLogOut = () => {
+      localStorage.removeItem("user");
+      document.getElementById("signOut").style.display = "none";
+      document.getElementById("sign_in").style.display = "block";
+    };
+
+  </script>
+
+
+
+
+  <main>
+    <div class="Container">
+      <div class="container">
+        <div class="row d-flex justify-content-center align-items-center py-5">
+          <div class="col-6">
+            <form>
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="from">From</label>
+
+                  <input list="fromList" id="from" placeholder="From Station" class="form-control" />
+                  <datalist id="fromList"> </datalist>
+                </div>
+                <div class="form-group col-6">
+                  <label for="to">To</label>
+                  <input list="toList" id="to" placeholder="From Station" class="form-control" />
+                  <datalist id="toList"> </datalist>
+                </div>
+              </div>
+              <div class="row pt-3">
+                <div class="form-group col-6">
+                  <label for="date">Date of Journey</label>
+                  <input type="date" class="form-control" id="date" placeholder="00-00-0000" />
+
+                  <br>
+                  <label for="time">Time of Journey</label>
+                  <input type="time" class="form-control" id="time" placeholder="00-00" />
+                </div>
+
+                <div class="form-group col-6">
+                  <label for="class">Choose Class</label>
+                  <select id="class" class="form-select" aria-label="Default select example" for="class">
+                    <option selected hidden>Choose a class</option>
+
+                    <option value="First Class/1A">First Class/1A</option>
+                    <option value="AC 2tier/2A">AC 2tier/2A</option>
+                    <option value="AC 3tier/3A">AC 3tier/3A</option>
+                    <option value="Executive class chair car/Economy Class">Executive class chair car/Economy Class
+                    </option>
+                    <option value="AC Chair Car">AC Chair Car</option>
+                    <option value="Sleeper Class">Sleeper Class</option>
+                    <option value="Second Class">Second Class</option>
+                    <option value="General">General</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row d-flex justify-content-center">
+                <button type="button" class="btn btn-success mt-5 col-8" onclick="handleSearchTrain()">
+                  Search Train
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="col-6">
+            <img src="images/Destination.PNG" class="responsive" alt="" />
+          </div>
+        </div>
+      </div>
+
+
+
+      <!----------------------------------------------------------footer---------------------------------------------------------------------->
+      
+      <footer class="">
+        <div class="footer">
+          <span class="Influencer">Online Ticket Booking </span> <br> <a href="https://www.codingnepalweb.com
+">Copyright </a><span class="far fa-copyright"></span> 2022 Online Ticket Booking <br>
+          <span>All rights reserved</span><br>
+          <div class="footer-icon">
+            <a href=""><i class="fab fa-facebook"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+            <a href=""><i class="fab fa-youtube-square"></i></a>
+            <a href=""><i class="fab fa-twitter"></i></a>
+          </div>
+          <div class="get-app">
+            <h5>Get The App</h3>
+              <div>
+                <a href="">
+                  <img src="images/App-logo/App Store Badge.png" alt="">
+                  <img src="images/App-logo/Google play.png" alt="">
+                </a>
+              </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <!-----------------------------------------------------footerDone----------------------------------------------------->
+
+
+
+
+  <!-- js link  -->
+  <script src="./Js/reserve.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Ticket Booking
+    </title>
+        
+    <!-- fontawesome link  -->
+    <script src="https://kit.fontawesome.com/47665aa912.js" crossorigin="anonymous"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="Css/bootstrap.min.css">
+
+    <!-- css link -->
+    <link rel="stylesheet" href="Css/style.css">
+     
+    <!-- css link- (jquery.hislide.min)
+    <link rel="stylesheet" href="Css/css/jquery.hislide.min.css"> -->
+
+   
+
+</head>
+<body>
+  <!------------
+    navbar
+  -------------->
+
+ <header>
+    <nav class="navbar navbar-expand-lg navbar-light Routes-color fixed-top">
+        <div class="container">
+          <a class="navbar-brand fw-bolder fs-3" href="index.html">Online Ticket Booking </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold navit">
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="reserve.html">Booking</a>
+              </li>
+
+              
+
+              <li class="nav-item" id="admin-link">
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="my-booking.html">My Booking</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="Pricing.html">Pricing</a>
+              </li>
+             
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="contactus.html">Contact</a>
+              </li>
+                          
+            </ul>
+            <form class="d-flex">
+              <div id="sign_in" >
+                <div class="d-flex">
+                  <button class="btn btn-outline-success " type="submit"><a class="nav-link active register" aria-current="page" href="regland.html">Register</a></button>
+    
+                  <!-- Login work  -->
+                  <button class="btn btn-outline-success mx-2" type="submit"><a class="nav-link active  register" aria-current="page" href="login.html">Login</a></button>
+                </div>
+                 
+                  
+              </div>
+                  <!-- Register work  -->
+          <div id="signOut" >
+            <div class="d-flex ">
+              <p id="userName" class="user-name"></p>
+            <!-- Login work  -->
+            <button onclick="handleLogOut()" class="logout-btn" type="button"><a class="log-out" aria-current="page">Logout</a></button>
+            </div>
+          </div>
+                </form>
+            
+          </div>
+
+        </div>
+      </nav>
+</header>
+<script>
+  const getUserInfo = () => {
+  const userInfo = localStorage.getItem("user");
+  const user = JSON.parse(userInfo);
+  console.log("user :", user);
+  if (user) {
+    document.getElementById("signOut").style.display = "block";
+    document.getElementById("sign_in").style.display = "none";
+    document.getElementById("userName").innerText = user.name;
+    if(user.admin) {
+      document.getElementById("admin-link").innerHTML = `<a class="nav-link active" aria-current="page" href="admin.html">Admin</a>`;
+    }
+  } else {
+    document.getElementById("sign_in").style.display = "block";
+    document.getElementById("signOut").style.display = "none";
+  }
+};
+getUserInfo();
+
+const handleLogOut = () => {
+  localStorage.removeItem("user");
+  document.getElementById("signOut").style.display = "none";
+  document.getElementById("sign_in").style.display = "block";
+  document.getElementById('admin-link').innerHTML = '';
+};
+
+</script>
+    <!-----------------------
+    Section-2 (carousel part)  
+    ------------------------->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/Tickets/online-ticket-1.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption">
+              <h2 class="slider-h-color">Welcome to the Online Ticket Booking, Incorporated!</h2>
+              <p class="slide-p">Thank you for joining us!</p>
+              <a target="" href="reserve.html"><button class="btn btn-light px-4 py-2 book">Book Now</button></a>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/Tickets/online-ticket-2.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption">
+              <h2 class="slider-h-color">Create an account and book your ticket any time</h2>
+              <p class="slide-p">We remain at your service whenever you need us</p>
+              <a target="" href="reserve.html"><button class="btn btn-light px-4 py-2 book">Book Now</button></a>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/Tickets/online-ticket-3.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption">
+              <h2 class="slider-h-color">Thank you for joining us!</h2>
+              <p class="slide-p">You can delete your booking before 12 hours of your departure</p>
+              <a target="" href="reserve.html"><button class="btn btn-light px-4 py-2 book">Book Now</button></a>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!--..............................................................slider.......................................................... -->
+
+      <div class="slide hi-slide">
+        <div class="hi-prev"> </div>
+        <div class="hi-next"> </div>
+        <ul>
+            <li>
+                <img src="images/slider/repub.png" alt="">
+            </li>
+            <li> 
+                <img src="images/slider/2.jpg" alt=""></li>
+            <li> 
+                <img src="images/slider/5.jpg" alt=""></li>
+            <li>
+                 <img src="images/slider/blog_image_-IRCTC-Train-Enquiry-Services-All-You-Need-to-Know-1024x536.jpg" alt=""></li>
+            <li> 
+                <img src="images/slider/4.jpg" alt=""></li>
+            <li>
+                 <img src="images/slider/paytm-train-ticket-offer.jpg" alt=""></li>
+                 <li>
+                  <img src="images/slider/44.jpg" alt=""></li>
+       
+        </ul>
+    </div>
+
+       <!--..............................................................slider Done.......................................................... -->
+
+
+
+
+
+
+
+      <!-- section-3 (POPULAR BUS ROUTES)  -->
+      <section class="container Routes-color my-5">
+        <div>
+          <div class=" text-center p-5 ">
+            <h1>POPULAR TRAINS ROUTES</h1>
+          </div>
+          <div>
+            <div>
+              <div class="list-group Routes-alain">
+                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                  <h5>Destination Name & Departure time</h5>
+                </a>
+                <a href="reserve.html" class="list-group-item list-group-item-action">Dhaka To Rajshahi (9:00 pm)</a>
+                <a href="reserve.html" class="list-group-item list-group-item-action">Dhaka To Chittagong (10:00 pm)</a>
+                <a href="reserve.html" class="list-group-item list-group-item-action">Dhaka To Khulna (8:00 am)</a>
+                <a href="reserve.html" class="list-group-item list-group-item-action">Dhaka To Faridpur (9:00 am)</a>
+                <a href="reserve.html" class="list-group-item list-group-item-action">Dhaka To Panchagarh (11:30 pm)</a>
+                <a href="reserve.html" class="list-group-item list-group-item-action">Dhaka To Sirajganj (11:00 am)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+
+
+      <!-- section-5 (Bank card part) 
+      <section">  -->
+      <!-- 1st row -->
+      <hr class="hr-top">
+     <!-- some site logo -->
+     <div class="text-center p-5">
+       <h1>We Accept</h1>
+     </div>
+     <section class="all-logo container">
+         <a href="https://www.dutchbanglabank.com/"><img src="images/logos/Bank/DBBl.png" alt=""></a>
+         <a href="https://www.bkash.com/bn"><img src="images/logos/Bank/bKash.png" alt=""></a>
+         <a href="https://www.dutchbanglabank.com/rocket/rocket.html"><img src="images/logos/Bank/184568.svg" alt=""></a>
+         <a href="https://www.upaybd.com/"><img src="images/logos/Bank/download.png" alt=""></a>
+         <a href="https://nagad.com.bd/"><img src="images/logos/Bank/Nagad-Logo.wine.png" alt=""></a>
+         <a href=""><img src="images/logos/Bank/Untitled_2527_x_2527_px_3.png" alt=""></a>
+         <a href=""><img src="images/logos/Bank/VISA.png" alt=""></a>
+         <a href=""><img src="images/logos/Bank/sure-cash-mobile-banking.png" alt=""></a>
+      </section>
+
+        <!-- 2nd row -->
+        <hr>
+
+ </section>
+
+
+
+
+
+
+
+<!-- ...... ..................................................................................................................... -->
+
+<div class="testimonials container">
+  <div class="inner">
+      <h1>Testimonials</h1>
+      <div class="border"></div>
+      <div class="row">
+          <div class="col">
+              <div class="testimonial">
+                  <img src="images/Rev/p1.jpg" alt="">
+                  <div class="name">Tonmoy Biswas</div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+
+        <p>
+          I have just booked multi city trains through Online Ticket Booking which it seems is partnered with go to gate. The Trains are business class and almost 30%. cheaper than any other site. I took a leap of faith and TBH it has been very efficient so far, I got my journey ref and was able to go onto ticket booking site and book seats. So here’s hoping all goes to plan
+        </p>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="testimonial">
+        <img src="images/Rev/p2.jpg" alt="">
+        <div class="name">Zakaria Islam</div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+
+        <p>
+          I have used Online Ticket Booking for many years but now I'm considering changing to another site. Why: <br>
+1) I was sent a 10% offer, tried to redeem it, but was told it expired. It was impossible to contact customer services for this issue,
+2) if I do a search on the site. Leave it for 1 day the prices of all the properties have increased. I'm sure this is an algorithm on the site
+        </p>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="testimonial">
+        <img src="images/Rev/p3.jpg" alt="">
+        <div class="name">Shadman Rahman</div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+
+        <p>
+          Best Ticket Booking Site
+The wonderful news is that if your plans change or you find a better deal elsewhere, cancelling your reservation is simple. Not a single doubt.
+I would suggest this ticket booking site to anyone over any others. <br>
+The website was very helpful. Their customer  services were also good. <br> Well deserve 4*
+        </p>
+              </div>
+
+          </div>
+      </div>
+  </div>  
+  
+</div>
+
+<!-- .... ....................................................................... -->
+
+
+
+
+  <!----------------------------------------------------------footer---------------------------------------------------------------------->
+
+    <main>
+      <div class="Container">
+          <footer class="">
+              <div class="footer">
+                  <span class="Influencer">Online Ticket Booking </span> <br> <a href="https://www.codingnepalweb.com">Copyright </a><span class="far fa-copyright"></span>  2022  Online Ticket Booking <br>
+                  <span>All rights reserved</span><br>
+                  <div class="footer-icon">
+                      <a href=""><i class="fab fa-facebook"></i></a>
+                      <a href=""><i class="fab fa-instagram"></i></a>
+                      <a href=""><i class="fab fa-youtube-square"></i></a>
+                      <a href=""><i class="fab fa-twitter"></i></a>
+                  </div>
+                  <div class="get-app">
+                    <h5>Get The App</h3>
+                      <div>
+                        <a href="">
+                          <img src="images/App-logo/App Store Badge.png" alt="">
+                          <img src="images/App-logo/Google play.png" alt="">
+                        </a>
+                      </div>
+                  </div>
+              </div>
+          </footer> 
+      </div>
+  </main> 
+  <!-----------------------------------------------------footerDone----------------------------------------------------->
+
+
+
+    <!-- js link  -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+
+    <!-- slider work  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"> </script>
+    <script src="js/hislide/jquery.hislide.js"></script>
+    <script>
+      $('.slide').hiSlide();
+  </script>
+</body>
+</html>
